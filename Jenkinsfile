@@ -27,7 +27,11 @@ pipeline {
         stage("Git step default branch") {
             steps {
                 ws('JENKINS-64320-default-branch') {
-                    catchError(buildResult: 'SUCCESS', catchInterruptions: false, message: 'Expected error on checkout failure') {
+                    catchError(buildResult: 'SUCCESS', catchInterruptions: false, message: 'Expected error on checkout failure without catching interruptions') {
+                        // Fails because repo JENKINS-64314 default branch is 'main'
+                        git url: 'https://github.com/MarkEWaite/JENKINS-64314'
+                    }
+                    catchError(buildResult: 'SUCCESS', message: 'Expected error on checkout failure and catching interruptions') {
                         // Fails because repo JENKINS-64314 default branch is 'main'
                         git url: 'https://github.com/MarkEWaite/JENKINS-64314'
                     }
