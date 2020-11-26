@@ -27,11 +27,9 @@ pipeline {
         stage("Git step default branch") {
             steps {
                 ws('JENKINS-64320-default-branch') {
-                    try {
+                    catchError {
                         // Fails because repo JENKINS-64314 default branch is 'main'
                         git url: 'https://github.com/MarkEWaite/JENKINS-64314'
-                    } catch (err) {
-                        echo 'Expected error was thrown'
                     }
                 }
             }
