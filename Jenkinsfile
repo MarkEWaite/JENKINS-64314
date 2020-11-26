@@ -34,7 +34,7 @@ pipeline {
                 }
             }
         }
-        stage("Git step default branch with interruption catch") {
+        stage("Git step default branch without interruption catch") {
             steps {
                 ws('JENKINS-64320-default-branch-catching-interruptions') {
                     catchError(buildResult: 'SUCCESS', message: 'Expected error on checkout failure and catching interruptions') {
