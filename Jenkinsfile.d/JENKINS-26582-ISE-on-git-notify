@@ -13,6 +13,7 @@ for (int i = 0; i < nodes.size(); i++) {
     tasks[label] = {
         node(label) {
             stage(stageName) {
+                checkout scm // Required so that SCM polling will be honored
                 def command = "echo ${label}"
                 if (isUnix()) {
                     sh command
