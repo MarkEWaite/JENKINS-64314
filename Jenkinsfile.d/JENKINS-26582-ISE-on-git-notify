@@ -1,9 +1,12 @@
 def nodes = nodesByLabel label: 'windows || !windows'
-nodes = nodes.sort()
+nodes.shuffle() // Randomize intentionally
 
 Map tasks = [:]
 
 for (int i = 0; i < nodes.size(); i++) {
+    if (i > 4) {
+        continue // Take first 5 random agents
+    }
     def label = nodes[i]
     def stageName = 'notify ' + label.replaceAll('(-jagent)|(-ssh)|(-mwaite)|(.markwaite.net)|(-beemarkwaite)|(-jenkins)', '')
     tasks[label] = {
