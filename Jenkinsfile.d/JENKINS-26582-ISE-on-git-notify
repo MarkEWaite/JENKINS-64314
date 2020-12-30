@@ -1,5 +1,5 @@
 def nodes = nodesByLabel label: 'windows || !windows'
-nodes.shuffle() // Randomize intentionally
+java.util.Collections.shuffle(nodes) // Randomize intentionally
 
 Map tasks = [:]
 
