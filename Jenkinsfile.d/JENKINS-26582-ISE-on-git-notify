@@ -1,4 +1,5 @@
 def nodes = nodesByLabel label: 'windows || !windows'
+
 java.util.Collections.shuffle(nodes) // Randomize intentionally
 
 Map tasks = [:]
@@ -26,4 +27,3 @@ for (int i = 0; i < nodes.size(); i++) {
 timeout(time: 3, unit: 'MINUTES') {
     parallel(tasks)
 }
-
